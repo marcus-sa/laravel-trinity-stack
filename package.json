@@ -1,0 +1,44 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"><img src=\"https://laravel.com/assets/img/components/logo-laravel.svg\"></p>",
+  "main": "src/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "concurrently --kill-others \"better-npm-run watch-client\""
+  },
+  "betterScripts": {
+    "watch-client": {
+      "command": "node --trace-warnings -r babel-register ./webpack/webpack-dev-server.js",
+      "env": {
+        "NODE_PATH": "./webpack",
+        "NODE_ENV": "development",
+        "WEBPACK_PORT": 9000
+      }
+    }
+  },
+  "author": "Marcus S. Abildskov <https://github.com/marcus-sa>",
+  "license": "MIT",
+  "dependencies": {
+    "trinity-dom": "^1.0.6",
+    "trinity-plugin-api": "^1.1.1",
+    "trinity-web": "github:marcus-sa/trinity-js#dev",
+    "validator": "^9.2.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "better-npm-run": "^0.1.0",
+    "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "webpack": "^3.10.0",
+    "webpack-dev-middleware": "^2.0.4",
+    "webpack-hot-middleware": "^2.21.0"
+  }
+}
