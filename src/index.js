@@ -4,7 +4,7 @@ import Render from 'trinity-dom'
 
 import { isNotAuthenticated, isAuthenticated } from './routeAuth'
 
-import { Login, Home, Register } from './containers'
+import { Login, Dashboard, Register } from './containers'
 
 const initialData = window.__data ? JSON.parse(window.__data) : {}
 const initialStore = Object.assign(initialData, { data: {} })
@@ -16,6 +16,6 @@ app.context('api', new ApiClient('http://localhost:1337/api', 'session._token'))
 
 app.route('/', Login, isNotAuthenticated)
 app.route('/register', Register, isNotAuthenticated)
-app.route('/home', Home, isAuthenticated)
+app.route('/dashboard', Dashboard, isAuthenticated)
 
 app.start()

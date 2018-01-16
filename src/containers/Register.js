@@ -1,6 +1,7 @@
 import { Component, helpers, createElement } from 'trinity-web'
 
 import { FormGroup } from '../components'
+import { toggleDropdown } from 'utils/events'
 import { button, div, i, ul, a, li, span, form, input, label } from 'utils/dom'
 import { required, isEmail, minLength, maxLength, match } from 'utils/validation'
 
@@ -16,18 +17,6 @@ export default class Register extends Component {
         setTimeout(() => {
             this.setState({ loginBlock: 'login__block' })
         }, 301)
-    }
-
-    hideDropdown = (e) => {
-        if (this.state.dropdown) {
-            this.setState({ dropdown: 'dropdown' })
-        }
-    }
-
-    toggleDropdown = (e) => {
-        e.preventDefault()
-
-        this.setState({ dropdown: 'dropdown open' })
     }
 
     register = (event) => {
@@ -58,11 +47,11 @@ export default class Register extends Component {
 
                         div({ className: 'actions login__block__actions' })(
                             div({ className: dropdown })(
-                                a({ onMouseEnter: this.toggleDropdown })(
+                                a({ href: '#', onClick: toggleDropdown.bind(this) })(
                                     i({ className: 'zmdi zmdi-more-vert' })()
                                 ),
 
-                                ul({ onMouseLeave: this.hideDropdown, className: 'dropdown-menu pull-right' })(
+                                ul({ className: 'dropdown-menu pull-right' })(
                                     li(
                                         a({ href: '/' })(
                                             'Already have an account?'

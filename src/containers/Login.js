@@ -1,6 +1,7 @@
-import { Component, helpers, createElement } from 'trinity-web'
+import { Component, helpers, createElement, Router } from 'trinity-web'
 
 import { FormGroup } from '../components'
+import { toggleDropdown } from '../utils/events'
 import { required, maxLength, minLength } from 'utils/validation'
 import { button, div, i, ul, a, li, span, form, input, label } from 'utils/dom'
 
@@ -16,6 +17,8 @@ export default class Login extends Component {
         setTimeout(() => {
             this.setState({ loginBlock: 'login__block' })
         }, 301)
+
+        console.info(this.store.get())
     }
 
     hideDropdown = (e) => {
@@ -46,8 +49,12 @@ export default class Login extends Component {
             try {
                 const user = await this.context.api.post('login', { data })
 
-                this.store.set({ user })
+                this.store.set({ session: { user } })
+
+                Router.navigate('/dashboard')
             } catch (errors) {
+                console.error(errors)
+
                 this.setState({ errors })
             }
         }
@@ -63,11 +70,11 @@ export default class Login extends Component {
 
                         div({ className: 'actions login__block__actions' })(
                             div({ className: dropdown })(
-                                a({ onMouseEnter: this.toggleDropdown })(
+                                a({ href: '#', onClick: toggleDropdown.bind(this) })(
                                     i({ className: 'zmdi zmdi-more-vert' })()
                                 ),
 
-                                ul({ onMouseLeave: this.hideDropdown, className: 'dropdown-menu pull-right' })(
+                                ul({ className: 'dropdown-menu pull-right' })(
                                     li(
                                         a({ href: '/register' })(
                                             'Create an account'

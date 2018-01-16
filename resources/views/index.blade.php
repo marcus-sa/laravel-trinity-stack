@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <app>
+        <app style="display: none;">
             <!-- If URI doesn't match any route this will just be shown -->
             <div class="page-error">
                 <div class="page-error__inner">

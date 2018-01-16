@@ -17,7 +17,7 @@ class User
     public function handle(Request $request, Closure $next)
     {
         $user = $request->session()->get('user');
-        if (empty($user) || $user['rank'] !== 'user') {
+        if (empty($user)) {
             return response('Not authenticated', 401);
         }
 
